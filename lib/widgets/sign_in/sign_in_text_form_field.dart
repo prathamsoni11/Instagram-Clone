@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 import '../../constents/text_style.dart';
@@ -21,13 +19,17 @@ class SignInTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
+    var theme = Theme.of(context);
+
     return TextFormField(
+      style: TextStyle(
+          color: brightness == Brightness.dark ? theme.primaryColorDark : null),
       onChanged: onChanged,
       obscureText: obscureText,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(15),
         hintText: hintText,
-        hintStyle: k15TextStyle.copyWith(color: Colors.grey),
+        hintStyle: k15TextStyle.copyWith(color: theme.hintColor),
         suffixIcon: suffixIcon,
         border: const OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
