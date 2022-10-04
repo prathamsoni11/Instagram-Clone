@@ -20,6 +20,7 @@ class _SignInState extends State<SignIn> {
   bool _visible = false;
   @override
   Widget build(BuildContext context) {
+    var brightness = MediaQuery.of(context).platformBrightness;
     var theme = Theme.of(context);
     var size = MediaQuery.of(context).size;
 
@@ -31,7 +32,7 @@ class _SignInState extends State<SignIn> {
               onPressed: () {},
               child: Text(
                 'English (India)',
-                style: k15TextStyle.copyWith(color: theme.hintColor),
+                style: k15TextStyle.copyWith(color: theme.primaryColorLight),
               ),
             ),
             Expanded(
@@ -68,7 +69,8 @@ class _SignInState extends State<SignIn> {
                           _visible
                               ? CupertinoIcons.eye_fill
                               : CupertinoIcons.eye_slash_fill,
-                          color: _visible ? theme.primaryColor : Colors.grey,
+                          color:
+                              _visible ? theme.primaryColor : theme.hintColor,
                         ),
                       ),
                       onChanged: (value) {
@@ -85,8 +87,8 @@ class _SignInState extends State<SignIn> {
                       style: ButtonStyle(
                         backgroundColor:
                             (_username.isEmpty || _password.isEmpty)
-                                ? MaterialStateProperty.all(theme.primaryColor)
-                                : null,
+                                ? MaterialStateProperty.all(theme.disabledColor)
+                                : MaterialStateProperty.all(theme.primaryColor),
                         minimumSize: MaterialStateProperty.all(
                           const Size.fromHeight(50),
                         ),
@@ -101,7 +103,9 @@ class _SignInState extends State<SignIn> {
                         'Log in',
                         style: TextStyle(
                           color: (_username.isEmpty || _password.isEmpty)
-                              ? Colors.white
+                              ? brightness == Brightness.light
+                                  ? Colors.white
+                                  : theme.primaryColorLight
                               : null,
                         ),
                       ),
@@ -113,9 +117,12 @@ class _SignInState extends State<SignIn> {
                     kH5SizedBox,
                     Row(
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: Divider(
                             thickness: 1,
+                            color: brightness == Brightness.dark
+                                ? Colors.grey.shade900
+                                : null,
                           ),
                         ),
                         Padding(
@@ -123,14 +130,17 @@ class _SignInState extends State<SignIn> {
                           child: Text(
                             'OR',
                             style: TextStyle(
-                              color: Colors.grey.shade600,
+                              color: theme.primaryColorLight,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Divider(
                             thickness: 1,
+                            color: brightness == Brightness.dark
+                                ? Colors.grey.shade900
+                                : null,
                           ),
                         ),
                       ],
@@ -156,8 +166,10 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
-            const Divider(
+            Divider(
               thickness: 1,
+              color:
+                  brightness == Brightness.dark ? Colors.grey.shade900 : null,
             ),
             const SignInTextButton(
               text1: "Don't have an account? ",
