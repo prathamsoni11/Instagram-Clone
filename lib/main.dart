@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_clone/screens/sign_in.dart';
+import 'package:instagram_clone/widgets/themes.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -22,24 +23,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Instagram Clone',
       themeMode: ThemeMode.system,
-      theme: ThemeData(
-        primaryColor: Colors.blueAccent.shade100,
-        primaryColorDark: Colors.deepPurple.shade900,
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-        ),
-      ),
-      darkTheme: ThemeData(
-        primaryColorLight: Colors.deepPurple.shade900,
-        canvasColor: Colors.black,
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-        ),
-      ),
+      theme: MyThemes.lightTheme(context),
+      darkTheme: MyThemes.darkTheme(context),
       home: const SignIn(),
     );
   }
