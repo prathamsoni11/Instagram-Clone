@@ -14,7 +14,6 @@ class SignInTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
     var theme = Theme.of(context);
 
     return TextButton(
@@ -25,16 +24,14 @@ class SignInTextButton extends StatelessWidget {
           Text(
             text1,
             style: k12TextStyle.copyWith(
-              color: Colors.grey.shade600,
+              color: theme.primaryColorLight,
             ),
           ),
           Text(
             text2,
             style: k12TextStyle.copyWith(
               fontWeight: FontWeight.bold,
-              color: brightness == Brightness.light
-                  ? theme.primaryColorDark
-                  : Colors.white,
+              color: theme.primaryColorDark,
             ),
           ),
         ],
