@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Instagram Clone',
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: MyThemes.lightTheme(context),
       darkTheme: MyThemes.darkTheme(context),
       home: const SignIn(),
