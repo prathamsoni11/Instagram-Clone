@@ -18,12 +18,9 @@ class SignInTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
     var theme = Theme.of(context);
 
     return TextFormField(
-      style: TextStyle(
-          color: brightness == Brightness.dark ? theme.primaryColorDark : null),
       onChanged: onChanged,
       obscureText: obscureText,
       decoration: InputDecoration(
@@ -33,23 +30,13 @@ class SignInTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         border: const OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: brightness == Brightness.light
-                ? Colors.grey.shade300
-                : Colors.grey.shade800,
-          ),
+          borderSide: BorderSide(color: Colors.grey.shade300),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: brightness == Brightness.light
-                ? Colors.grey.shade300
-                : Colors.grey.shade800,
-          ),
+          borderSide: BorderSide(color: Colors.grey.shade300),
         ),
         filled: true,
-        fillColor: brightness == Brightness.light
-            ? Colors.grey.shade100
-            : Colors.grey.shade800,
+        fillColor: Colors.grey.shade100,
       ),
       maxLines: 1,
     );
